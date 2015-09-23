@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite;
+namespace Nanuly\Socialize;
 
 use ArrayAccess;
 

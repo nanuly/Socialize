@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Nanuly\Socialize\Two;
 
 interface ProviderInterface
 {
@@ -14,7 +14,7 @@ interface ProviderInterface
     /**
      * Get the User instance for the authenticated user.
      *
-     * @return \Laravel\Socialite\Two\User
+     * @return \Nanuly\Socialize\Two\User
      */
     public function user();
 }

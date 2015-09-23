@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite\One;
+namespace Nanuly\Socialize\One;
 
 use InvalidArgumentException;
 

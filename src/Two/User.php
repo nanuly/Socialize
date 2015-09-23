@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Nanuly\Socialize\Two;
 
-use Laravel\Socialite\AbstractUser;
+use Nanuly\Socialize\AbstractUser;
 
 class User extends AbstractUser
 {

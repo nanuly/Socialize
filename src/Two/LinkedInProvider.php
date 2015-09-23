@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Nanuly\Socialize\Two;
 
 class LinkedInProvider extends AbstractProvider implements ProviderInterface
 {

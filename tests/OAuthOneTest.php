@@ -2,7 +2,7 @@
 
 use Mockery as m;
 use Illuminate\Http\Request;
-use Laravel\Socialite\One\AbstractProvider;
+use Nanuly\Socialize\One\AbstractProvider;
 
 class OAuthOneTest extends PHPUnit_Framework_TestCase
 {
@@ -46,7 +46,7 @@ class OAuthOneTest extends PHPUnit_Framework_TestCase
         $provider = new OAuthOneTestProviderStub($request, $server);
         $user = $provider->user();
 
-        $this->assertInstanceOf('Laravel\Socialite\One\User', $user);
+        $this->assertInstanceOf('Nanuly\Socialize\One\User', $user);
         $this->assertEquals('uid', $user->id);
         $this->assertEquals('foo@bar.com', $user->email);
     }

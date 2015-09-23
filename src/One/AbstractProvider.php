@@ -1,12 +1,12 @@
 <?php
 
-namespace Laravel\Socialite\One;
+namespace Nanuly\Socialize\One;
 
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use League\OAuth1\Client\Server\Server;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Laravel\Socialite\Contracts\Provider as ProviderContract;
+use Nanuly\Socialize\Contracts\Provider as ProviderContract;
 
 abstract class AbstractProvider implements ProviderContract
 {
@@ -54,7 +54,7 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Get the User instance for the authenticated user.
      *
-     * @return \Laravel\Socialite\One\User
+     * @return \Nanuly\Socialize\One\User
      */
     public function user()
     {

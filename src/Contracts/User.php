@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite\Contracts;
+namespace Nanuly\Socialize\Contracts;
 
 interface User
 {

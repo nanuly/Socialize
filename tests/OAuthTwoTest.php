@@ -2,8 +2,8 @@
 
 use Mockery as m;
 use Illuminate\Http\Request;
-use Laravel\Socialite\Two\User;
-use Laravel\Socialite\Two\AbstractProvider;
+use Nanuly\Socialize\Two\User;
+use Nanuly\Socialize\Two\AbstractProvider;
 
 class OAuthTwoTest extends PHPUnit_Framework_TestCase
 {
@@ -37,12 +37,12 @@ class OAuthTwoTest extends PHPUnit_Framework_TestCase
         $response->shouldReceive('getBody')->once()->andReturn('access_token=access_token');
         $user = $provider->user();
 
-        $this->assertInstanceOf('Laravel\Socialite\Two\User', $user);
+        $this->assertInstanceOf('Nanuly\Socialize\Two\User', $user);
         $this->assertEquals('foo', $user->id);
     }
 
     /**
-     * @expectedException Laravel\Socialite\Two\InvalidStateException
+     * @expectedException Nanuly\Socialize\Two\InvalidStateException
      */
     public function testExceptionIsThrownIfStateIsInvalid()
     {
@@ -54,7 +54,7 @@ class OAuthTwoTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Laravel\Socialite\Two\InvalidStateException
+     * @expectedException Nanuly\Socialize\Two\InvalidStateException
      */
     public function testExceptionIsThrownIfStateIsNotSet()
     {
