@@ -1,13 +1,13 @@
 <?php
 
-namespace Laravel\Socialite\Facades;
+namespace Nanuly\Socialize\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Laravel\Socialite\SocialiteManager
+ * @see \Nanuly\Socialize\SocializeManager
  */
-class Socialite extends Facade
+class Socialize extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -16,6 +16,6 @@ class Socialite extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'Laravel\Socialite\Contracts\Factory';
+        return 'Nanuly\Socialize\Contracts\Factory';
     }
 }

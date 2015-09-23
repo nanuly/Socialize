@@ -1,12 +1,12 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Nanuly\Socialize\Two;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Laravel\Socialite\Contracts\Provider as ProviderContract;
+use Nanuly\Socialize\Contracts\Provider as ProviderContract;
 
 abstract class AbstractProvider implements ProviderContract
 {
@@ -114,10 +114,10 @@ abstract class AbstractProvider implements ProviderContract
     abstract protected function getUserByToken($token);
 
     /**
-     * Map the raw user array to a Socialite User instance.
+     * Map the raw user array to a Socialize User instance.
      *
      * @param  array  $user
-     * @return \Laravel\Socialite\User
+     * @return \Nanuly\Socialize\User
      */
     abstract protected function mapUserToObject(array $user);
 

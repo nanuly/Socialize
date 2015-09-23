@@ -1,10 +1,10 @@
 <?php
 
-namespace Laravel\Socialite;
+namespace Nanuly\socialize;
 
 use Illuminate\Support\ServiceProvider;
 
-class SocialiteServiceProvider extends ServiceProvider
+class socializeServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -20,8 +20,8 @@ class SocialiteServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bindShared('Laravel\Socialite\Contracts\Factory', function ($app) {
-            return new SocialiteManager($app);
+        $this->app->bindShared('Nanuly\socialize\Contracts\Factory', function ($app) {
+            return new socializeManager($app);
         });
     }
 
@@ -32,6 +32,6 @@ class SocialiteServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['Laravel\Socialite\Contracts\Factory'];
+        return ['Nanuly\socialize\Contracts\Factory'];
     }
 }
