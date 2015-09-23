@@ -11,3 +11,4 @@ Documentation for Socialize can be found on the [Laravel website](http://laravel
 ### License
 
 Laravel Socialize is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
