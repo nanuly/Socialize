@@ -1,12 +1,12 @@
 {
-    "name": "laravel/socialite",
+    "name": "nanuly/socialize",
     "description": "Laravel wrapper around OAuth 1 & OAuth 2 libraries.",
-    "keywords": ["oauth", "laravel"],
+    "keywords": ["nanuly", "oauth", "laravel"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Taylor Otwell",
-            "email": "taylorotwell@gmail.com"
+            "name": "Jeankie Kim",
+            "email": "nanuly.com@gmail.com"
         }
     ],
     "require": {
@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravel\\Socialite\\": "src/"
+            "Nanuly\\Socialize\\": "src/"
         }
     },
     "extra": {
