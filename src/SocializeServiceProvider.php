@@ -13,6 +13,13 @@ class socializeServiceProvider extends ServiceProvider
      */
     protected $defer = true;
 
+    public function boot()
+    {
+        \Auth::extend('kakao', function($app) {
+            // Return an instance of Illuminate\Contracts\Auth\UserProvider...
+            return new KakaoUserProvider($app['kakao.connection']);
+        });
+    }
     /**
      * Register the service provider.
      *
