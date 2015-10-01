@@ -63,21 +63,21 @@ class SocializeManager extends Manager implements Contracts\Factory
             'Nanuly\Socialize\Two\GoogleProvider', $config
         );
     }
-    
-    /** 
+
+    /**
      *
      * kakao
      *
      */
-    protected function createKakaoDriver()
+    protected function createKakaotalkDriver()
     {
-        $config = $this->app['config']['services.kakao'];
+        $config = $this->app['config']['services.kakaotalk'];
 
         return $this->buildProvider(
-            'Nanuly\Socialize\Two\KakaoProvider', $config
+            'Nanuly\Socialize\Two\KakaotalkProvider', $config
         );
     }
-    
+
     /**
      * Create an instance of the specified driver.
      *
