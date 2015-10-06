@@ -1,10 +1,10 @@
 <?php
 
-namespace Nanuly\socialize;
+namespace Nanuly\Socialize;
 
 use Illuminate\Support\ServiceProvider;
 
-class socializeServiceProvider extends ServiceProvider
+class SocializeServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -13,13 +13,6 @@ class socializeServiceProvider extends ServiceProvider
      */
     protected $defer = true;
 
-    public function boot()
-    {
-        \Auth::extend('kakao', function($app) {
-            // Return an instance of Illuminate\Contracts\Auth\UserProvider...
-            return new KakaoUserProvider($app['kakao.connection']);
-        });
-    }
     /**
      * Register the service provider.
      *
@@ -27,8 +20,8 @@ class socializeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bindShared('Nanuly\socialize\Contracts\Factory', function ($app) {
-            return new socializeManager($app);
+        $this->app->bindShared('Nanuly\Socialize\Contracts\Factory', function ($app) {
+            return new SocializeManager($app);
         });
     }
 
@@ -39,6 +32,6 @@ class socializeServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['Nanuly\socialize\Contracts\Factory'];
+        return ['Nanuly\Socialize\Contracts\Factory'];
     }
 }
