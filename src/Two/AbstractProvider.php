@@ -88,6 +88,8 @@ abstract class AbstractProvider implements ProviderContract
         $this->clientId = $clientId;
         $this->redirectUrl = $redirectUrl;
         $this->clientSecret = $clientSecret;
+
+        $this->memberLog = new MemberLogController;
     }
 
     /**
@@ -384,25 +386,15 @@ abstract class AbstractProvider implements ProviderContract
         curl_close($curl);
 
         \Geeks\User::where('id', '=', \Auth::id())->update(array('deleted_at' => date('Y-m-d H:i:s')));
+        $this->memberLog->insertLog(\Auth::id(), 17, 'Kakaotalk 연동 해제',1);
+        
         \Auth::logout();
-        return redirect('/');
-    }
-
-    public function facebookUnlink($token)
-    {
-        $apiUrl = 'https://graph.facebook.com';
-
-        $curl = curl_init();
-
-        curl_setopt($curl, CURLOPT_URL, $apiUrl);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
-
-        $result = curl_exec($curl);
-        curl_close();
-
-        print_r($result);
-        exit;
+        //return redirect('/');
+        return view('geeks.display')
+                    ->with(['sType'=>'success',
+                            'iCode'=>'101',
+                            'sUrl'=>'/',
+                            'sMsg'=>'연동해제가 완료되었습니다. 카카오톡에서 다시 한번 확인해주세요.']);
     }
 
     public function naverUnlink($token)
@@ -423,7 +415,14 @@ abstract class AbstractProvider implements ProviderContract
         print_r($result);
         exit;
         \Geeks\User::where('id', '=', \Auth::id())->update(array('deleted_at' => date('Y-m-d H:i:s')));
+        $this->memberLog->insertLog(\Auth::id(), 17, 'naver 연동 해제',1);
+
         \Auth::logout();
-        return redirect('/');
+        //return redirect('/');
+        return view('geeks.display')
+                    ->with(['sType'=>'success',
+                            'iCode'=>'101',
+                            'sUrl'=>'/',
+                            'sMsg'=>'연동해제가 완료되었습니다. 네이버에서 다시 한번 확인해주세요.']);
     }
 }
