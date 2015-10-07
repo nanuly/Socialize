@@ -347,4 +347,83 @@ abstract class AbstractProvider implements ProviderContract
 
         return $this;
     }
+
+    /**
+     *
+     * Kakao Unlink
+     *
+     */
+    public function kakaoUnlink($token)
+    {
+        $apiUrl = 'https://kapi.kakao.com/v1/user/unlink';
+
+        $authorization_header = "Authorization: Bearer " .  $token;
+        $request_headers = array();
+        array_push($request_headers, $authorization_header);
+
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_URL, $apiUrl);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
+
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        $authorization_header = "Authorization: KakaoAK " . $this->app['config']['services.kakaotalk']['admin_key'];
+        $request_headers = array();
+        array_push($request_headers, $authorization_header);
+
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_URL, $apiUrl);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
+
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        \Geeks\User::where('id', '=', \Auth::id())->update(array('deleted_at' => date('Y-m-d H:i:s')));
+        \Auth::logout();
+        return redirect('/');
+    }
+
+    public function facebookUnlink($token)
+    {
+        $apiUrl = 'https://graph.facebook.com';
+
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_URL, $apiUrl);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
+
+        $result = curl_exec($curl);
+        curl_close();
+
+        print_r($result);
+        exit;
+    }
+
+    public function naverUnlink($token)
+    {
+        $apiUrl = 'https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=' . $this->clientId;
+        $apiUrl .= '&client_secret=' . $this->clientSecret;
+        $apiUrl .= '&access_token='. $token;
+        $apiUrl .= '&service_provider=NAVER';
+
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_URL, $apiUrl);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        print_r($result);
+        exit;
+        \Geeks\User::where('id', '=', \Auth::id())->update(array('deleted_at' => date('Y-m-d H:i:s')));
+        \Auth::logout();
+        return redirect('/');
+    }
 }
