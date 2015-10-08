@@ -412,7 +412,16 @@ abstract class AbstractProvider implements ProviderContract
         $result = curl_exec($curl);
         curl_close($curl);
 
-        if ($result['result'] === 'success' ) {
+        if (strstr($result, 'success') === false ) {
+            $this->memberLog->insertLog(\Auth::id(), 17, 'naver 연동 해제', 0);
+
+            return view('geeks.display')
+                    ->with(['sType'=>'fail',
+                            'iCode'=>'201',
+                            'sUrl'=>'/member',
+                            'sMsg'=>'연동해제를 실패하였습니다. 네이버에 문의해주세요.']);
+
+        } else {
             \Geeks\User::where('id', '=', \Auth::id())->update(array('deleted_at' => date('Y-m-d H:i:s')));
             $this->memberLog->insertLog(\Auth::id(), 17, 'naver 연동 해제',1);
 
@@ -422,15 +431,6 @@ abstract class AbstractProvider implements ProviderContract
                             'iCode'=>'101',
                             'sUrl'=>'/',
                             'sMsg'=>'연동해제가 완료되었습니다. 네이버에서 다시 한번 확인해주세요.']);
-
-        } else {
-            $this->memberLog->insertLog(\Auth::id(), 17, 'naver 연동 해제', 0);
-
-            return view('geeks.display')
-                    ->with(['sType'=>'fail',
-                            'iCode'=>'201',
-                            'sUrl'=>'/member',
-                            'sMsg'=>'연동해제를 실패하였습니다. 네이버에 문의해주세요.']);
         }
         //return redirect('/');
     }
